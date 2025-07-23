@@ -1,3 +1,7 @@
+            /* Custom Confirmation Modal */
+* {
+    scrollbar-width: none;
+}
 :host {
                 all: initial; /* Reset all inherited styles */
             }
@@ -5,7 +9,7 @@
             /* Dark Theme (Default) */
             :host(.theme-dark) {
                 --vrid-text-color: #f8f9fa;
-                --vrid-bg-dark: #00000093;
+                --vrid-bg-dark: #000000b6;
                 --vrid-bg-darker: #111827;
                 --vrid-bg-mid: #374151;
                 --vrid-accent: #ff9100;
@@ -18,7 +22,7 @@
             /* Light Theme */
             :host(.theme-light) {
                 --vrid-text-color: #111827;
-                --vrid-bg-dark: #f3f4f6e0;
+                --vrid-bg-dark: #f3f4f6cb;
                 --vrid-bg-darker: #ffffff;
                 --vrid-bg-mid: #e5e7eb;
                 --vrid-accent: #555;
@@ -39,12 +43,14 @@
 
             .vrid-dock {
                 position: fixed;
-                top: 80px;
-                right: 130px;
-                width: auto;
-                max-width: 95vw;
+                bottom: 20px; /* Adjusted position */
+                right: 20px; /* Adjusted position */
+                width: 325px; /* Fixed width for consistency */
+                height:295px;
+                max-height:295px;
+                max-width:325px;
                 background-color: var(--vrid-bg-dark);
-                border-radius: 0px;
+                border-radius: 0px; /* Rounded corners */
                 z-index: 9999999;
                 user-select: none;
                 backdrop-filter: var(--glass-effect);
@@ -55,6 +61,7 @@
                 font-size: 15px;
                 display: none; /* Initially hidden */
                 flex-direction: column;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Add shadow */
             }
 
             .vrid-title-bar {
@@ -413,13 +420,21 @@
                 align-items: center;
             }
             .vrid-confirm-modal-content {
-                background-color: var(--vrid-bg-dark);
-                border: 1px solid var(--vrid-border-color);
-                padding: 20px;
-                width: 90%;
-                max-width: 400px;
-                text-align: center;
-            }
+            background-color: var(--vrid-bg-dark);
+            backdrop-filter: var(--glass-effect);
+            margin: auto;
+            padding: 20px;
+            border: 1px solid var(--vrid-border-color);
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 0px;
+            text-align: center;
+            color: var(--vrid-text-color);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
             .vrid-confirm-modal-content h2 {
                 margin-top: 0;
                 color: var(--vrid-text-color);
@@ -438,9 +453,10 @@
             /* Custom Toast */
             .vrid-toast {
                 position: fixed;
-                top: 20px;
-                right: 20px;
-                background-color: var(--vrid-bg-mid);
+                bottom: 20px;
+                right: 50%;
+                background-color: var(--vrid-bg-dark);
+            backdrop-filter: var(--glass-effect);
                 color: var(--vrid-text-color);
                 padding: 15px;
                 border-radius: 5px;
@@ -452,3 +468,35 @@
             .vrid-toast.show {
                 opacity: 1;
             }
+
+        .vrid-confirm-buttons .vrid-button {
+            padding: 10px 20px;
+            border-radius: 0px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .vrid-confirm-buttons .vrid-button.primary {
+            background-color: var(--vrid-accent);
+            color: var(--vrid-bg-darker);
+            border: 1px solid var(--vrid-accent);
+            transition: all 0.3s ease;
+        }
+
+        .vrid-confirm-buttons .vrid-button.primary:hover {
+            background-color: var(--vrid-accent);
+            color: var(--vrid-bg-darker);
+        }
+
+        .vrid-confirm-buttons .vrid-button {
+            background-color: var(--vrid-bg-dark);
+            color: var(--vrid-text-color);
+            border: 1px solid var(--vrid-border-color);
+            transition: all 0.3s ease;
+        }
+
+        .vrid-confirm-buttons .vrid-button:hover {
+            background-color: var(--vrid-bg-dark);
+            opacity: 0.5;
+        }
